@@ -1,0 +1,17 @@
+# Compiler and Foundry generated files
+cache/
+out/
+broadcast/
+
+# Environment variables (CRITICAL: Protects your private keys)
+.env
+.env*
+
+# IDE and OS specific files
+.vscode/
+.idea/
+.DS_Store
+*.swp
+
+# Node modules (in case you add JavaScript/TypeScript later)
+node_modules/
