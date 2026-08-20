@@ -2,7 +2,7 @@
 pragma solidity ^0.8.30;
 
 import {Script, console} from "forge-std/Script.sol";
-import {Attacker} from "../src/attacker.sol";
+import {Attacker} from "../src/lv3-attacker.sol";
 
 interface CoinFlip {
     function consecutiveWins() external view returns (uint256);
