@@ -15,4 +15,8 @@ This level hides solidity code and force us to interact with its abi. Just follo
 *   **Exploit:** I deployed a malicious contract `lv3-attacker.sol` that calculates the exact same blockhash equation in the same transaction, effectively pre-computing the correct coin flip before calling the victim contract.
 *   **Code:** [Attacker Contract](./src/lv3-attacker.sol) | [Execution Script](./script/lv3-script.s.sol)
 *   **Lesson:** use random oracle from chainlink
-
+## Level 4
+*   **Vulnerability:** The contract relies on `tx.origin != msg.sender` to authorize ownership changes. While `tx.origin` refers to the original Externally Owned Account (EOA) that signed the transaction, `msg.sender` is only the immediate caller, making authentication vulnerable to intermediary contract proxying or phishing attacks.
+*   **Exploit:** I deployed an intermediary `Attacker` contract that forwards a call to `changeOwner(tx.origin)`. Because the transaction originates from my wallet (`tx.origin = player`) but hits the `Telephone` contract via the attacker contract (`msg.sender = attacker`), the inequality condition evaluates to true, successfully transferring ownership to my wallet address.
+*   **Code:** [Attacker Contract](./src/lv4-attacker.sol) | [Execution Script](./script/lv4-script.s.sol)
+*   **Lesson:** Never use `tx.origin` for access control or authorization; use `msg.sender` instead.
